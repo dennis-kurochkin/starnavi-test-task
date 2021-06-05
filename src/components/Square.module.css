@@ -1,0 +1,9 @@
+.elem {
+    width: var(--square-size);
+    height: var(--square-size);
+    border: 1px solid var(--color-grey);
+}
+
+.filled {
+    background: var(--color-blue);
+}
