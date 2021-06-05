@@ -1,0 +1,20 @@
+.title {
+    margin: 0 0 16px;
+}
+
+.list {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.elem {
+    padding: 4px 12px;
+    font-weight: 600;
+    border: 2px solid var(--color-blue);
+    border-radius: 4px;
+    font-size: 14px;
+    background: var(--color-light-grey);
+}

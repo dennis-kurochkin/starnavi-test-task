@@ -1,0 +1,12 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--field-size), var(--square-size));
+    width: calc(var(--square-size) * var(--field-size) + 2px);
+    border: 1px solid var(--color-grey);
+}
+
+.inactive {
+    background: var(--color-light-grey);
+    pointer-events: none;
+    cursor: not-allowed;
+}
