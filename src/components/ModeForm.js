@@ -5,7 +5,7 @@ import styles from './ModeForm.module.css';
 
 const getFormattedMode = mode => mode.charAt(0).toUpperCase() + mode.slice(1).split('M').join(' m');
 
-const ModeForm = ({ onModeChange, onGameStart, isPlaying }) => {
+const ModeForm = ({ onModeChange, onGameStart, isGameStarted }) => {
   const [modes, setModes] = useState([]);
   const [size, setSize] = useState(0);
 
@@ -38,7 +38,7 @@ const ModeForm = ({ onModeChange, onGameStart, isPlaying }) => {
       <button
         type="button"
         onClick={onGameStart}
-        disabled={size === 0 || isPlaying}
+        disabled={size === 0 || isGameStarted}
         className={styles.button}
       >
         Start
@@ -50,7 +50,7 @@ const ModeForm = ({ onModeChange, onGameStart, isPlaying }) => {
 ModeForm.propTypes = {
   onModeChange: PropTypes.func.isRequired,
   onGameStart: PropTypes.func.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
+  isGameStarted: PropTypes.bool.isRequired,
 }
 
 export default ModeForm;

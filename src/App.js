@@ -8,61 +8,50 @@ import styles from './App.module.css';
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [fieldSize, setFieldSize] = useState(5);
-  const [hoveredSquares, setHoveredSquares] = useState([]);
+  const [field, setField] = useState(Array(fieldSize).fill(Array(fieldSize).fill(false)));
 
   const handleModeChange = size => {
     if (size >= 2) {
       setFieldSize(size);
+      setField(Array(size).fill(Array(size).fill(false)));
+    } else {
+      setField(Array(fieldSize).fill(Array(fieldSize).fill(false)));
     }
 
     setIsPlaying(false);
-    setHoveredSquares([])
   }
-
-  const handleSquareFill = squareData => {
-    setHoveredSquares([...hoveredSquares, squareData]);
-  }
-
-  const handleSquareUnfill = ([row, column]) => {
-    setHoveredSquares(hoveredSquares.filter(square => {
-      return !(square[0] === row && square[1] === column);
-    }));
-  }
-
-  let row = 1;
-  let column = 1;
 
   return (
     <main className={styles.main}>
       <div className={styles.game}>
+        <h1 className={styles.title}>Starnavi Test Task</h1>
         <ModeForm
           onGameStart={() => setIsPlaying(true)}
           onModeChange={handleModeChange}
-          isPlaying={isPlaying}
+          isGameStarted={isPlaying}
         />
         <Field
           size={fieldSize}
           isActive={isPlaying}
         >
-          {[...Array(fieldSize * fieldSize)].map((_n, index) => {
-            if ((index + 1) > fieldSize * row) {
-              row++;
-              column = 1;
-            }
-
-            return (
-              <Square
-                key={index}
-                row={row}
-                column={column++}
-                onFill={handleSquareFill}
-                onUnfill={handleSquareUnfill}
-              />
-            )
-          })}
+          {field.map((fieldRow, fieldRowIndex) => fieldRow.map((isSquareFilled, squareIndex) => (
+            <Square
+              key={fieldRowIndex + squareIndex}
+              row={fieldRowIndex}
+              column={squareIndex}
+              isFilled={isSquareFilled}
+              onHover={(row, column) => setField(
+                field.map((fieldRow, fieldRowIndex) => fieldRow.map(
+                  (fieldColumn, fieldColumnIndex) => (
+                    fieldRowIndex === row && fieldColumnIndex === column ? !fieldColumn : fieldColumn
+                  )
+                ))
+              )}
+            />
+          )))}
         </Field>
       </div>
-      {isPlaying && <GameInfo className={styles.info} squaresInfo={hoveredSquares} />}
+      {isPlaying && <GameInfo className={styles.info} fieldState={field} />}
     </main>
   );
 }
