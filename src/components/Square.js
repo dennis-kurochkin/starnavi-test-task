@@ -1,26 +1,14 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Square.module.css';
 
-const Square = ({ row, column, onFill, onUnfill }) => {
-  const [filled, setFilled] = useState(false);
-
-  const handleMouseOver = () => {
-    if (!filled) {
-      onFill([row, column]);
-    } else {
-      onUnfill([row, column]);
-    }
-
-    setFilled(!filled);
-  }
+const Square = ({ row, column, isFilled, onHover }) => {
 
   return (
     <div
       data-row={row}
       data-column={column}
-      className={`${styles.elem} ${filled ? styles.filled : ''}`}
-      onMouseOver={handleMouseOver}
+      className={`${styles.elem} ${isFilled ? styles.filled : ''}`}
+      onMouseOver={() => onHover(row, column)}
     ></div>
   );
 }
@@ -28,8 +16,8 @@ const Square = ({ row, column, onFill, onUnfill }) => {
 Square.propTypes = {
   row: PropTypes.number.isRequired,
   column: PropTypes.number.isRequired,
-  onFill: PropTypes.func.isRequired,
-  onUnfill: PropTypes.func.isRequired,
+  isFilled: PropTypes.bool.isRequired,
+  onHover: PropTypes.func.isRequired,
 }
 
 export default Square;

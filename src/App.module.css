@@ -4,3 +4,7 @@
     justify-content: start;
     gap: 48px;
 }
+
+.title {
+    margin: 0 0 16px;
+}
