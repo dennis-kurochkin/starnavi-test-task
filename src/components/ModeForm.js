@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { API } from '../services';
 import styles from './ModeForm.module.css';
 
+/**
+ * Formats received game mode name to easily readable string.
+ * @param {string} mode
+ */
 const getFormattedMode = mode => mode.charAt(0).toUpperCase() + mode.slice(1).split('M').join(' m');
 
 const ModeForm = ({ onModeChange, onGameStart, isGameStarted }) => {
