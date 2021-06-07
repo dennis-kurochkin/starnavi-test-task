@@ -5,9 +5,7 @@ const Square = ({ row, column, isFilled, onHover }) => {
 
   return (
     <div
-      data-row={row}
-      data-column={column}
-      className={`${styles.elem} ${isFilled ? styles.filled : ''}`}
+      className={`${styles.elem}${isFilled ? ` ${styles.filled}` : ''}`}
       onMouseOver={() => onHover(row, column)}
     ></div>
   );
