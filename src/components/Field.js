@@ -14,7 +14,7 @@ const Field = ({ size, isActive, children }) => {
   }, [size]);
 
   return (
-    <div className={`${styles.grid} ${!isActive ? `${styles.inactive}` : ''}`}>
+    <div className={`${styles.grid}${!isActive ? ` ${styles.inactive}` : ''}`}>
       {children}
     </div>
   );

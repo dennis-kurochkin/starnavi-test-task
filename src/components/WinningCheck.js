@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './WinningCheck.module.css';
 
 const WinningCheck = ({ onEnabledChange }) => {
@@ -10,7 +11,7 @@ const WinningCheck = ({ onEnabledChange }) => {
 
   useEffect(() => {
     onEnabledChange(isEnabled);
-  }, [isEnabled, onEnabledChange])
+  }, [isEnabled, onEnabledChange]);
 
   return (
     <div className={styles.main}>
@@ -25,4 +26,8 @@ const WinningCheck = ({ onEnabledChange }) => {
   );
 }
 
-export default WinningCheck
+WinningCheck.propTypes = {
+  onEnabledChange: PropTypes.func.isRequired,
+}
+
+export default WinningCheck;

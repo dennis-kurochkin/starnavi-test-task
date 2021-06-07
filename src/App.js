@@ -4,9 +4,14 @@ import ModeForm from './components/ModeForm';
 import Field from './components/Field';
 import Square from './components/Square';
 import GameInfo from './components/GameInfo';
-import styles from './App.module.css';
 import WinningCheck from './components/WinningCheck';
+import styles from './App.module.css';
 
+/**
+ * Creates an array of passed size filled with some initial values.
+ * @param {number} size
+ * @param {boolean} [initialValue]
+ */
 const createFieldData = (size, initialValue = false) => Array(size).fill(Array(size).fill(initialValue));
 
 const App = () => {
